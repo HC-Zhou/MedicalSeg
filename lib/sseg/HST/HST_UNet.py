@@ -174,7 +174,7 @@ class HST_UNet(nn.Module):
 
         self.LWF4 = LWF(256)
         self.decoder4 = UpSampleBlock(in_channels=512, out_channels=256)
-        self.attn4 = nn.ModuleList([Block(256) for _ in range(2)])
+        self.attn4 = nn.ModuleList([Block(256) for _ in range(4)])
 
         self.LWF3 = LWF(128)
         self.decoder3 = UpSampleBlock(in_channels=256, out_channels=128)
