@@ -423,7 +423,7 @@ def shunted_t(pretrained=None, img_size=224, **kwargs):
         depths=[1, 2, 4, 1], sr_ratios=[8, 4, 2, 1], num_conv=0, **kwargs)
     model.default_cfg = _cfg()
     if os.path.exists(pretrained):
-        print(model.load_state_dict(torch.load(pretrained), strict=False))
+        print(model.load_state_dict(torch.load(pretrained, map_location='cpu'), strict=False))
     return model
 
 
@@ -435,7 +435,7 @@ def shunted_s(pretrained=None, img_size=224, **kwargs):
         depths=[2, 4, 12, 1], sr_ratios=[8, 4, 2, 1], num_conv=1, **kwargs)
     model.default_cfg = _cfg()
     if os.path.exists(pretrained):
-        print(model.load_state_dict(torch.load(pretrained), strict=False))
+        print(model.load_state_dict(torch.load(pretrained, map_location='cpu'), strict=False))
     return model
 
 
@@ -447,7 +447,7 @@ def shunted_b(pretrained=None, img_size=224, **kwargs):
         depths=[3, 4, 24, 2], sr_ratios=[8, 4, 2, 1], num_conv=2, **kwargs)
     model.default_cfg = _cfg()
     if os.path.exists(pretrained):
-        print(model.load_state_dict(torch.load(pretrained), strict=False))
+        print(model.load_state_dict(torch.load(pretrained, map_location='cpu'), strict=False))
     return model
 
 

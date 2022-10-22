@@ -4,7 +4,7 @@ Time: 2022/8/4 14:42
 Author: Yimohanser
 Software: PyCharm
 """
-from lib.utils.metrics import sensitivity, specificity, acc, dc, jc, f1
+from lib.utils.metrics import sensitivity, specificity, dc, jc, f1
 
 
 def get_score(pred, gt):
