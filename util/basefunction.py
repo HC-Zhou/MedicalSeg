@@ -82,8 +82,8 @@ def dataset_kfold(dataset_dir, k=5):
 
 if __name__ == '__main__':
     # ([0.708, 0.582, 0.536], [0.156, 0.165, 0.18])
-    # imgs = read_root(root=r'D:\迅雷下载\ISIC2018\img')
-    # print(mean_std(imgs, w=512, h=512))
+    imgs = read_root(root=r'D:\迅雷下载\ISIC2016\ISBI2016_ISIC_Part1_Training_Data')
+    print(mean_std(imgs, w=512, h=512))
     # dataset_kfold(dataset_dir=r'D:\迅雷下载\ISIC\train\img', k=5)
     # dict = json.load(open('val.json', 'r'))
     # print(len(dict['0']))
@@ -92,4 +92,3 @@ if __name__ == '__main__':
     # for chdir in os.listdir(root):
     #     img = os.path.join(root, chdir, f'{chdir}_Dermoscopic_Image', f'{chdir}.bmp')
     #     mask = os.path.join(root, chdir, f'{chdir}_lesion', f'{chdir}_lesion.bmp')
-    print(os.listdir('D:\迅雷下载\ISBI2016_ISIC_Part1_Training_Data'))
