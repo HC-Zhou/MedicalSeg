@@ -154,8 +154,8 @@ class PH2(data.Dataset):
         self.names = os.listdir(self.root)
 
         for img_name in self.names:
-            img_file = self.root + f'/{img_name}_Dermoscopic_Image/{img_name}.bmp'
-            lbl_file = self.root + f'/{img_name}_lesion/{img_name}_lesion.bmp'
+            img_file = self.root + f'/{img_name}/{img_name}_Dermoscopic_Image/{img_name}.bmp'
+            lbl_file = self.root + f'/{img_name}/{img_name}_lesion/{img_name}_lesion.bmp'
             self.files['train'].append({
                 'img': img_file,
                 'mask': lbl_file,

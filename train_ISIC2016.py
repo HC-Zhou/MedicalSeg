@@ -114,7 +114,7 @@ def main():
     valloader = torch.utils.data.DataLoader(
         val_dataset,
         batch_size=args.batch_size, num_workers=args.workers,
-        shuffle=False, pin_memory=True
+        shuffle=False, pin_memory=False
     )
 
     # criterion
