@@ -141,7 +141,6 @@ def main():
         epoch_start = 0
         max_iou = 0.
         max_dice = 0.
-        max_acc = 0.
         max_f1 = 0.
 
     # amp training
