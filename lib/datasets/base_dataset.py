@@ -4,13 +4,11 @@ Time: 2022/8/4 9:17
 Author: Yimohanser
 Software: PyCharm
 """
-import os
 import json
 import collections
 import numpy as np
 from abc import abstractmethod
 from torch.utils import data
-from sklearn.model_selection import KFold
 
 class MultiClassBaseDataset(data.Dataset):
     def __init__(self,
