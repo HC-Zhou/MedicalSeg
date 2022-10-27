@@ -66,9 +66,9 @@ def main():
     if not args.resume:
         count = 0
         while os.path.exists(
-                args.log_path + args.model + "_ISIC_ver_" + str(count)):
+                args.log_path + args.model + "_ISIC2018_ver_" + str(count)):
             count += 1
-        args.log_path = args.log_path + args.model + "_ISIC_ver_" + str(count)
+        args.log_path = args.log_path + args.model + "_ISIC2018 _ver_" + str(count)
         os.mkdir(args.log_path)
     print('chkpt path: ', args.log_path)
 

@@ -223,5 +223,5 @@ class HST_UNet(nn.Module):
 if __name__ == "__main__":
     from torchsummary import summary
 
-    model = HST_UNet(img_size=256)
-    summary(model, input_size=(3, 256, 256), device='cpu')
+    model = HST_UNet(img_size=384)
+    summary(model, input_size=(3, 384, 384), device='cpu')

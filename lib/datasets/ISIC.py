@@ -78,6 +78,9 @@ class ISIC_Dataset(data.Dataset):
 
         return img, mask, ori
 
+    def __len__(self):
+        return len(self.files[self.mode])
+
 
 class ISIC2016(data.Dataset):
     def __init__(self, root, mean, std, img_size=512):
