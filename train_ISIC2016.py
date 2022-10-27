@@ -16,7 +16,6 @@ from lib.core.function import train, val
 from lib.sseg import SSegmentationSet
 from lib.criterion import CriterionSet
 from torch.utils.tensorboard import SummaryWriter
-from torch.optim.lr_scheduler import CosineAnnealingLR
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train segmentation network')
