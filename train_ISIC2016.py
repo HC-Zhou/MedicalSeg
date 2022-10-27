@@ -125,7 +125,7 @@ def main():
     optimizer = Ranger(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
     # lr
-    scheduler = CosineAnnealingLR(optimizer, T_max=20)
+    scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda x: 1 / (x + 1))
 
     if args.resume:
         checkpoint = torch.load(args.log_path + '/checkpoint.pth', map_location='cpu')
