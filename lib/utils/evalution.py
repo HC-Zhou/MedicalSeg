@@ -4,18 +4,17 @@ Time: 2022/8/4 14:42
 Author: Yimohanser
 Software: PyCharm
 """
-from lib.utils.metrics import sensitivity, specificity, dc, jc, f1
+from lib.utils.metrics import dc, jc, precision, recall
 
 
 def get_score(pred, gt):
-    SE = sensitivity(pred, gt)
-    SP = specificity(pred, gt)
+    p = precision(pred, gt)
+    r = recall(pred, gt)
     DICE = dc(pred, gt)
     IoU = jc(pred, gt)
-    F1 = f1(pred, gt)
-    return {'SE': SE, 'SP': SP,
+    return {'precision': p, 'recall': r,
             'Dice': DICE,
-            'IoU': IoU, 'F1': F1}
+            'IoU': IoU}
 
 
 if __name__ == '__main__':

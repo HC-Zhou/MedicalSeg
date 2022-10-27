@@ -57,7 +57,7 @@ def read_root(root):
 def dataset_kfold(dataset_dir, k=5):
     indexes = [l[:-4] for l in os.listdir(dataset_dir)]
 
-    kf = KFold(k, shuffle=True, random_state=2022)  # k折交叉验证
+    kf = KFold(k, shuffle=True)  # k折交叉验证
 
     val_index = dict()
     train_index = dict()
@@ -82,11 +82,9 @@ def dataset_kfold(dataset_dir, k=5):
 
 if __name__ == '__main__':
     # ([0.708, 0.582, 0.536], [0.156, 0.165, 0.18])
-    imgs = read_root(root=r'D:\迅雷下载\ISIC2016\ISBI2016_ISIC_Part1_Training_Data')
-    print(mean_std(imgs, w=512, h=512))
-    # dataset_kfold(dataset_dir=r'D:\迅雷下载\ISIC\train\img', k=5)
-    # dict = json.load(open('val.json', 'r'))
-    # print(len(dict['0']))
+    # imgs = read_root(root=r'D:\迅雷下载\ISIC2016\ISBI2016_ISIC_Part1_Training_Data')
+    # print(mean_std(imgs, w=512, h=512))
+    dataset_kfold(dataset_dir=r'D:\迅雷下载\ISIC2018\train\img', k=5)
 
     # root = 'D:\迅雷下载\PH2Dataset\PH2 Dataset images'
     # for chdir in os.listdir(root):

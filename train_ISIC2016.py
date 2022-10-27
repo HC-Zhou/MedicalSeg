@@ -131,7 +131,6 @@ def main():
         epoch_start = checkpoint['epoch']
         max_iou = checkpoint['IoU']
         max_dice = checkpoint['Dice']
-        max_f1 = checkpoint['F1']
         model.load_state_dict(checkpoint['model'])
         optimizer.load_state_dict(checkpoint['optimizer'])
         scheduler.load_state_dict(checkpoint['scheduler'])
@@ -140,7 +139,6 @@ def main():
         epoch_start = 0
         max_iou = 0.
         max_dice = 0.
-        max_f1 = 0.
 
     # amp training
     scaler = GradScaler()
@@ -159,19 +157,16 @@ def main():
 
         IoU = val_log['IoU']
         Dice = val_log['Dice']
-        F1 = val_log['F1']
 
-        if Dice >= max_dice and F1 >= max_f1 and IoU >= max_iou:
+        if Dice >= max_dice and IoU >= max_iou:
             print('--------------- Save Best! ---------------')
             max_iou = max(max_iou, IoU)
             max_dice = max(max_dice, Dice)
-            max_f1 = max(max_f1, F1)
             torch.save({
                 'epoch': epoch,
                 'model': model.state_dict(),
                 'IoU': max_iou,
                 'Dice': max_dice,
-                'F1': max_f1
             }, os.path.join(args.log_path, 'Best.pth'))
 
         torch.save({
@@ -181,7 +176,6 @@ def main():
             'scheduler': scheduler.state_dict(),
             'IoU': max_iou,
             'Dice': max_dice,
-            'F1': max_f1
         }, os.path.join(args.log_path, 'checkpoint.pth'))
 
 
