@@ -57,12 +57,18 @@ def train(model: nn.Module, optimizer: optim.Optimizer,
         metric_logger.update(R=metric['recall'])
         metric_logger.update(Dice=metric['Dice'])
         metric_logger.update(IoU=metric['IoU'])
+        metric_logger.update(ACC=metric['ACC'])
+        metric_logger.update(SE=metric['SE'])
+        metric_logger.update(SP=metric['SP'])
 
     loss = metric_logger.meters["loss"].global_avg
     metric = {'P': metric_logger.meters["P"].global_avg,
               'R': metric_logger.meters["R"].global_avg,
               'Dice': metric_logger.meters["Dice"].global_avg,
-              'IoU': metric_logger.meters["IoU"].global_avg}
+              'IoU': metric_logger.meters["IoU"].global_avg,
+              'ACC': metric_logger.meters["ACC"].global_avg,
+              'SE': metric_logger.meters["SE"].global_avg,
+              'SP': metric_logger.meters["SP"].global_avg}
 
     plot_img_gray(img=ori[0], output=pred_mask[0], target=mask_list[0], Spath=log_path, mode='train')
     writeData(writer=writer, logger=logging, loss=loss, metric=metric, mode='train', epoch=epoch)
@@ -70,7 +76,10 @@ def train(model: nn.Module, optimizer: optim.Optimizer,
     return {'P': metric_logger.meters["P"].global_avg,
             'R': metric_logger.meters["R"].global_avg,
             'Dice': metric_logger.meters["Dice"].global_avg,
-            'IoU': metric_logger.meters["IoU"].global_avg}
+            'IoU': metric_logger.meters["IoU"].global_avg,
+            'ACC': metric_logger.meters["ACC"].global_avg,
+            'SE': metric_logger.meters["SE"].global_avg,
+            'SP': metric_logger.meters["SP"].global_avg}
 
 
 @torch.no_grad()
@@ -106,12 +115,18 @@ def val(model: nn.Module, dataloader: DataLoader, criterion: nn.Module,
         metric_logger.update(R=metric['recall'])
         metric_logger.update(Dice=metric['Dice'])
         metric_logger.update(IoU=metric['IoU'])
+        metric_logger.update(ACC=metric['ACC'])
+        metric_logger.update(SE=metric['SE'])
+        metric_logger.update(SP=metric['SP'])
 
     loss = metric_logger.meters["loss"].global_avg
     metric = {'P': metric_logger.meters["P"].global_avg,
               'R': metric_logger.meters["R"].global_avg,
               'Dice': metric_logger.meters["Dice"].global_avg,
-              'IoU': metric_logger.meters["IoU"].global_avg}
+              'IoU': metric_logger.meters["IoU"].global_avg,
+              'ACC': metric_logger.meters["ACC"].global_avg,
+              'SE': metric_logger.meters["SE"].global_avg,
+              'SP': metric_logger.meters["SP"].global_avg}
 
     plot_img_gray(img=ori[0], output=pred_mask[0], target=mask_list[0], Spath=log_path, mode='val')
     writeData(writer=writer, logger=logging, loss=loss, metric=metric, mode='val', epoch=epoch)
@@ -120,4 +135,7 @@ def val(model: nn.Module, dataloader: DataLoader, criterion: nn.Module,
     return {'P': metric_logger.meters["P"].global_avg,
             'R': metric_logger.meters["R"].global_avg,
             'Dice': metric_logger.meters["Dice"].global_avg,
-            'IoU': metric_logger.meters["IoU"].global_avg}
+            'IoU': metric_logger.meters["IoU"].global_avg,
+            'ACC': metric_logger.meters["ACC"].global_avg,
+            'SE': metric_logger.meters["SE"].global_avg,
+            'SP': metric_logger.meters["SP"].global_avg}

@@ -363,8 +363,8 @@ class ShuntedTransformer(nn.Module):
             for blk in block:
                 x = blk(x, H, W)
             x = norm(x)
-            outs.append(x)
             x = x.reshape(B, H, W, -1).permute(0, 3, 1, 2).contiguous()
+            outs.append(x)
 
         return tuple(outs)
 

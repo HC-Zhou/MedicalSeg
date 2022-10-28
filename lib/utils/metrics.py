@@ -274,6 +274,22 @@ def specificity(result, reference):
     return specificity
 
 
+def acc(result, reference):
+    result = numpy.atleast_1d(result.astype(numpy.bool))
+    reference = numpy.atleast_1d(reference.astype(numpy.bool))
+
+    tp = numpy.count_nonzero(result & reference)
+    fn = numpy.count_nonzero(~result & reference)
+    tn = numpy.count_nonzero(~result & ~reference)
+    fp = numpy.count_nonzero(result & ~reference)
+
+    try:
+        accuracy = (tp + tn) / float(tp + fn + tn + fp)
+    except ZeroDivisionError:
+        accuracy = 0.0
+
+    return accuracy
+
 def true_negative_rate(result, reference):
     """
     True negative rate.
@@ -311,16 +327,6 @@ def positive_predictive_value(result, reference):
     :func:`true_negative_rate`
     """
     return precision(result, reference)
-
-
-def f1(result, reference):
-    p = precision(result, reference)
-    r = recall(result, reference)
-    try:
-        f1 = (2 * p * r) / float(p + r)
-    except ZeroDivisionError:
-        f1 = 0.0
-    return f1
 
 
 def hd(result, reference, voxelspacing=None, connectivity=1):

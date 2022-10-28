@@ -44,7 +44,7 @@ class ISIC_Dataset(data.Dataset):
         ])
         self.y_transform = transforms.Compose([
             transforms.Resize((self.img_size, self.img_size),
-                              interpolation=transforms.InterpolationMode.NEAREST),
+                              interpolation=transforms.InterpolationMode.BILINEAR),
             transforms.ToTensor(),
         ])
         self.img_transform = transforms.Compose([
@@ -108,7 +108,7 @@ class ISIC2016(data.Dataset):
         ])
         self.y_transform = transforms.Compose([
             transforms.Resize((self.img_size, self.img_size),
-                              interpolation=transforms.InterpolationMode.NEAREST),
+                              interpolation=transforms.InterpolationMode.BILINEAR),
             transforms.ToTensor(),
         ])
         self.img_transform = transforms.Compose([

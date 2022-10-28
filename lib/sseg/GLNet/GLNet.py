@@ -64,16 +64,9 @@ class GLNet(nn.Module):
     def __init__(self, img_size=256, pretrained='', num_classes=1):
         super(GLNet, self).__init__()
         self.encoder = shunted_t(img_size=img_size, pretrained=pretrained)
-        self.LGF4 = LGF(512, num_heads=16, mlp_ratio=4)
         self.decoder4 = UpSampleBlock(in_channels=512, out_channels=256)
-
-        self.LGF3 = LGF(256, num_heads=8, mlp_ratio=4)
         self.decoder3 = UpSampleBlock(in_channels=256, out_channels=128)
-
-        self.LGF2 = LGF(128, num_heads=4, mlp_ratio=8)
         self.decoder2 = UpSampleBlock(in_channels=128, out_channels=64)
-
-        self.LGF1 = LGF(64, num_heads=2, mlp_ratio=8)
         self.decoder1 = UpSampleBlock(in_channels=64, out_channels=32)
 
         self.final = nn.Sequential(
@@ -89,10 +82,9 @@ class GLNet(nn.Module):
     def forward(self, x):
         result = OrderedDict()
         e1, e2, e3, e4 = self.encoder(x)
-        e4 = self.LGF4(e4)
-        d4 = self.decoder4(e4) + self.LGF3(e3)
-        d3 = self.decoder3(d4) + self.LGF2(e2)
-        d2 = self.decoder2(d3) + self.LGF1(e1)
+        d4 = self.decoder4(e4) + e3
+        d3 = self.decoder3(d4) + e2
+        d2 = self.decoder2(d3) + e1
         d1 = self.decoder1(d2)
         out = self.final(d1)
         result['out'] = out
