@@ -1,4 +1,5 @@
 # MedicalSeg
 The codes for the work "Medical Segmentation"
 # Dataset
-- ICDS
+- ISIC-2016
+- ISIC-2018
